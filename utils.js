@@ -31,11 +31,17 @@ export function getHTML(weather, day, time) {
 }
 
 export function getSunlightHTML(today, difference, yesterday, sunset, sunrise) {
-  return `<div class="additional-info ${today}">
-          <p>Welcome to <b>${today}</b>, \n it's nice here, we have ${difference} minutes more sunlight than ${yesterday}</p>
+  return `<div class="additional-info">
+          <div class="text-container ${today}">
+            <p>Welcome to <b>${today}</b>, \n it's nice here, we have ${difference} minutes more sunlight than ${yesterday}</p>
+          </div>  
             <div class="sunlightInformation"> 
-                <div class="sunrise ${today}">Sunrise: ${sunrise}</div>
-                <div class="sunset ${today}">Sunset: ${sunset}</div>
+              <div class="sunrise ${today}">
+              
+                <img src="assets/sunrise.png" alt=""/><br>Sunrise: ${sunrise}
+              </div>
+              <div class="sunset ${today}">
+              <img src="assets/sunset.png" alt=""/><br>Sunset: ${sunset}</div>
             </div>
           </div>`;
 }

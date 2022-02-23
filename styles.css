@@ -21,12 +21,73 @@ html {
   margin-right: auto;
 }
 
+:root {
+  --sunday-color: #405955be;
+  --monday-color: #518a7b;
+  --tuesday-color: #c3d7d2;
+  --wednesday-color: #d59066;
+  --thursday-color: #f2d1c2;
+  --friday-color: #d1bfad;
+  --saturday-color: rgb(252, 252, 252);
+}
+
 #title {
   width: 90%;
 }
 
 #weather-container > div {
-  margin: 3rem;
+  margin: 1rem;
+}
+
+#weather-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  #weather-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+.weather-card .Sunday {
+  background-color: var(--sunday-color);
+  color: #f3f1ed;
+}
+
+.weather-card .Monday {
+  background-color: var(--monday-color);
+}
+
+.weather-card .Tuesday {
+  background-color: var(--tuesday-color);
+}
+
+.weather-card .Wednesday {
+  background-color: var(--wednesday-color);
+}
+
+.weather-card .Thursday {
+  background-color: var(--thursday-color);
+}
+
+.weather-card .Friday {
+  background-color: var(--friday-color);
+}
+
+.weather-card .Saturday {
+  background-color: var(--saturday-color);
 }
 
 .weather-card .additional-info {
@@ -36,49 +97,20 @@ html {
   margin-left: auto;
   margin-right: auto;
   font-size: 1.5rem;
+  background-color: none;
 }
 
-.weather-card .main-info {
-  border-radius: 10px;
-  width: 50%;
-  max-width: 350px;
+.weather-card .additional-info .text-container {
   margin: 10px;
-  margin-right: 10px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
+  -webkit-filter: brightness(0.95);
+          filter: brightness(0.95);
+  padding: 10px;
 }
 
-.Sunday {
-  background-color: #405955be;
-  color: #f3f1ed;
-}
-
-.Monday {
-  background-color: #518a7b;
-}
-
-.Tuesday {
-  background-color: #c3d7d2;
-}
-
-.Wednesday {
-  background-color: #d59066;
-}
-
-.Thursday {
-  background-color: #f2d1c2;
-}
-
-.Friday {
-  background-color: #d1bfad;
-}
-
-.Saturday {
-  background-color: #fcfcfc;
-}
-
-.sunlightInformation {
-  width: 80%;
+.weather-card .additional-info .sunlightInformation {
   margin: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -90,42 +122,77 @@ html {
           justify-content: space-between;
 }
 
-.sunlightInformation .sunrise,
-.sunlightInformation .sunset {
+.weather-card .additional-info .sunlightInformation .sunrise,
+.weather-card .additional-info .sunlightInformation .sunset {
   background-color: rgba(252, 252, 252, 0.452);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   margin: 0;
   border-radius: 10px;
   width: 49%;
 }
 
-.sunlightInformation .Sunday {
-  background-color: #40595563;
+.weather-card .additional-info .sunlightInformation .sunrise img,
+.weather-card .additional-info .sunlightInformation .sunset img {
+  max-width: 70px;
+}
+
+.weather-card .additional-info .sunlightInformation .Sunday {
+  background-color: var(--sunday-color);
   color: #f3f1ed;
 }
 
-.sunlightInformation .Monday {
-  background-color: #518a7b80;
+.weather-card .additional-info .sunlightInformation .Monday {
+  background-color: var(--monday-color);
 }
 
-.sunlightInformation .Tuesday {
-  background-color: #c3d7d27c;
+.weather-card .additional-info .sunlightInformation .Tuesday {
+  background-color: var(--tuesday-color);
 }
 
-.sunlightInformation .Wednesday {
-  background-color: #d5916671;
+.weather-card .additional-info .sunlightInformation .Wednesday {
+  background-color: var(--wednesday-color);
 }
 
-.sunlightInformation .Thursday {
-  background-color: #f2d1c275;
+.weather-card .additional-info .sunlightInformation .Thursday {
+  background-color: var(--thursday-color);
 }
 
-.sunlightInformation .Friday {
-  background-color: #d1bfad73;
+.weather-card .additional-info .sunlightInformation .Friday {
+  background-color: var(--friday-color);
 }
 
-.sunlightInformation .Saturday {
-  background-color: rgba(252, 252, 252, 0.459);
+.weather-card .additional-info .sunlightInformation .Saturday {
+  background-color: var(--saturday-color);
+}
+
+.weather-card .main-info {
+  border-radius: 10px;
+  width: 50%;
+  max-width: 350px;
+  margin: 10px;
+  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  -webkit-filter: brightness(1.05);
+          filter: brightness(1.05);
+}
+
+@media screen and (min-width: 750px) {
+  .weather-card .main-info {
+    min-width: 320px;
+  }
+}
+
+.weather-card :hover.main-info {
+  background-color: #518a7b;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.3rem;
 }
 /*# sourceMappingURL=styles.css.map */

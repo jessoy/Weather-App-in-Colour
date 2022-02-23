@@ -1,9 +1,9 @@
 html {
-    box-sizing: border-box;
-    font-size: 15px;
-    background-color: #f3f1ed;
-  }
-  
+  box-sizing: border-box;
+  font-size: 15px;
+  background-color: #f3f1ed;
+}
+
 *,
 *::before,
 *::after {
@@ -24,26 +24,115 @@ html {
   margin-right: auto;
 }
 
+@mixin dayColours {
+  .Sunday {
+    background-color: var(--sunday-color);
+    // filter: brightness(0.85);
+    color: #f3f1ed;
+  }
+
+  .Monday {
+    background-color: var(--monday-color);
+  }
+
+  .Tuesday {
+    background-color: var(--tuesday-color);
+  }
+
+  .Wednesday {
+    background-color: var(--wednesday-color);
+  }
+
+  .Thursday {
+    background-color: var(--thursday-color);
+  }
+
+  .Friday {
+    background-color: var(--friday-color);
+  }
+
+  .Saturday {
+    background-color: var(--saturday-color);
+  }
+}
+
+:root {
+  --sunday-color: #405955be;
+  --monday-color: #518a7b;
+  --tuesday-color: #c3d7d2;
+  --wednesday-color: #d59066;
+  --thursday-color: #f2d1c2;
+  --friday-color: #d1bfad;
+  --saturday-color: rgb(252, 252, 252);
+}
+
 #title {
   width: 90%;
 }
 
 #weather-container > div {
-    margin: 3rem;
+  margin: 1rem;
+}
+
+#weather-container {
+  display: flex;
+  flex-direction: column;
+  // flex-direction: row;
+  max-width: 100%;
+
+  @media screen and (min-width: 750px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .weather-card {
+  @include dayColours();
   // display: flex;
   // flex-direction: column;
+  // flex-direction: row;
 
   .additional-info {
-    // opacity: 50%;
     border-radius: 10px;
     width: 80%;
     margin: 10px;
     margin-left: auto;
     margin-right: auto;
     font-size: 1.5rem;
+    background-color: none;
+
+    .text-container {
+      margin: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      filter: brightness(0.95);
+      padding: 10px;
+    }
+
+    .sunlightInformation {
+      margin: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: space-between;
+
+      .sunrise,
+      .sunset {
+        background-color: rgba(252, 252, 252, 0.452);
+
+        padding: 10px;
+        margin: 0;
+        border-radius: 10px;
+        width: 49%;
+
+        img {
+          max-width: 70px;
+        }
+      }
+
+      @include dayColours();
+    }
   }
 
   .main-info {
@@ -54,86 +143,23 @@ html {
     margin-right: 10px;
     margin-left: auto;
     margin-right: auto;
-  }
-}
-
-.Sunday {
-  background-color: #405955be;
-  color: #f3f1ed
-}
-
-.Monday {
-  background-color: #518a7b;
-}
-
-.Tuesday {
-  background-color: #c3d7d2;
-}
-
-.Wednesday {
-  background-color: #d59066;
-}
-
-.Thursday {
-  background-color: #f2d1c2;
-}
-
-.Friday {
-  background-color: #d1bfad;
-}
-
-.Saturday {
-  background-color: rgb(252, 252, 252);
-}
-
-.sunlightInformation {
-  width: 80%;
-  margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-between;
-  
-  // align-items: space-between;
-  // justify-items: space-between;
-  // align-content: space-between;
-
-  .sunrise, 
-  .sunset {
-    background-color: rgba(252, 252, 252, 0.452);
     padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 0;
-    border-radius: 10px;
-    width: 49%;
+    filter: brightness(1.05);
+
+    @media screen and (min-width: 750px) {
+      min-width: 320px;
+    }
   }
 
-  .Sunday {
-    background-color: #40595563;
-    color: #f3f1ed
+  :hover.main-info {
+    background-color: #518a7b;
   }
+}
 
-  .Monday {
-    background-color: #518a7b80;
-  }
+h3 {
+  font-size: 1.5rem;
+}
 
-  .Tuesday {
-    background-color: #c3d7d27c;
-  }
-
-  .Wednesday {
-    background-color: #d5916671;
-  }
-
-  .Thursday {
-    background-color: #f2d1c275;
-  }
-
-  .Friday {
-    background-color: #d1bfad73;
-  }
-
-  .Saturday {
-    background-color: rgba(252, 252, 252, 0.459);
-  }
+h4 {
+  font-size: 1.3rem;
 }
