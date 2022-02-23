@@ -90,81 +90,6 @@ html {
   background-color: var(--saturday-color);
 }
 
-.weather-card .additional-info {
-  border-radius: 10px;
-  width: 80%;
-  margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.5rem;
-  background-color: none;
-}
-
-.weather-card .additional-info .text-container {
-  margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px;
-  -webkit-filter: brightness(0.95);
-          filter: brightness(0.95);
-  padding: 10px;
-}
-
-.weather-card .additional-info .sunlightInformation {
-  margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.weather-card .additional-info .sunlightInformation .sunrise,
-.weather-card .additional-info .sunlightInformation .sunset {
-  background-color: rgba(252, 252, 252, 0.452);
-  padding: 10px;
-  margin: 0;
-  border-radius: 10px;
-  width: 49%;
-}
-
-.weather-card .additional-info .sunlightInformation .sunrise img,
-.weather-card .additional-info .sunlightInformation .sunset img {
-  max-width: 70px;
-}
-
-.weather-card .additional-info .sunlightInformation .Sunday {
-  background-color: var(--sunday-color);
-  color: #f3f1ed;
-}
-
-.weather-card .additional-info .sunlightInformation .Monday {
-  background-color: var(--monday-color);
-}
-
-.weather-card .additional-info .sunlightInformation .Tuesday {
-  background-color: var(--tuesday-color);
-}
-
-.weather-card .additional-info .sunlightInformation .Wednesday {
-  background-color: var(--wednesday-color);
-}
-
-.weather-card .additional-info .sunlightInformation .Thursday {
-  background-color: var(--thursday-color);
-}
-
-.weather-card .additional-info .sunlightInformation .Friday {
-  background-color: var(--friday-color);
-}
-
-.weather-card .additional-info .sunlightInformation .Saturday {
-  background-color: var(--saturday-color);
-}
-
 .weather-card .main-info {
   border-radius: 10px;
   width: 50%;
@@ -185,7 +110,84 @@ html {
 }
 
 .weather-card :hover.main-info {
-  background-color: #518a7b;
+  background-color: #d4af37;
+  background: -webkit-gradient(linear, left top, right top, from(#fcf6ba), color-stop(#bf953f), color-stop(#b38728), to(#aa771c));
+  background: linear-gradient(to right, #fcf6ba, #bf953f, #b38728, #aa771c);
+}
+
+.additional-info {
+  border-radius: 10px;
+  width: 80%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+  background-color: none;
+}
+
+.additional-info .text-container {
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  -webkit-filter: brightness(0.95);
+          filter: brightness(0.95);
+  padding: 10px;
+}
+
+.additional-info .sunlightInformation {
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.additional-info .sunlightInformation .sunrise,
+.additional-info .sunlightInformation .sunset {
+  background-color: rgba(252, 252, 252, 0.452);
+  padding: 10px;
+  margin: 0;
+  border-radius: 10px;
+  width: 49%;
+}
+
+.additional-info .sunlightInformation .sunrise img,
+.additional-info .sunlightInformation .sunset img {
+  max-width: 70px;
+}
+
+.additional-info .sunlightInformation .Sunday {
+  background-color: var(--sunday-color);
+  color: #f3f1ed;
+}
+
+.additional-info .sunlightInformation .Monday {
+  background-color: var(--monday-color);
+}
+
+.additional-info .sunlightInformation .Tuesday {
+  background-color: var(--tuesday-color);
+}
+
+.additional-info .sunlightInformation .Wednesday {
+  background-color: var(--wednesday-color);
+}
+
+.additional-info .sunlightInformation .Thursday {
+  background-color: var(--thursday-color);
+}
+
+.additional-info .sunlightInformation .Friday {
+  background-color: var(--friday-color);
+}
+
+.additional-info .sunlightInformation .Saturday {
+  background-color: var(--saturday-color);
 }
 
 h3 {

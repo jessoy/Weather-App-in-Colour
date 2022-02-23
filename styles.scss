@@ -92,49 +92,6 @@ html {
   // flex-direction: column;
   // flex-direction: row;
 
-  .additional-info {
-    border-radius: 10px;
-    width: 80%;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.5rem;
-    background-color: none;
-
-    .text-container {
-      margin: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 10px;
-      filter: brightness(0.95);
-      padding: 10px;
-    }
-
-    .sunlightInformation {
-      margin: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      justify-content: space-between;
-
-      .sunrise,
-      .sunset {
-        background-color: rgba(252, 252, 252, 0.452);
-
-        padding: 10px;
-        margin: 0;
-        border-radius: 10px;
-        width: 49%;
-
-        img {
-          max-width: 70px;
-        }
-      }
-
-      @include dayColours();
-    }
-  }
-
   .main-info {
     border-radius: 10px;
     width: 50%;
@@ -152,7 +109,51 @@ html {
   }
 
   :hover.main-info {
-    background-color: #518a7b;
+    background-color: #d4af37;
+    background: linear-gradient(to right, #fcf6ba, #bf953f, #b38728, #aa771c);
+  }
+}
+
+.additional-info {
+  border-radius: 10px;
+  width: 80%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+  background-color: none;
+
+  .text-container {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    filter: brightness(0.95);
+    padding: 10px;
+  }
+
+  .sunlightInformation {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+
+    .sunrise,
+    .sunset {
+      background-color: rgba(252, 252, 252, 0.452);
+
+      padding: 10px;
+      margin: 0;
+      border-radius: 10px;
+      width: 49%;
+
+      img {
+        max-width: 70px;
+      }
+    }
+
+    @include dayColours();
   }
 }
 

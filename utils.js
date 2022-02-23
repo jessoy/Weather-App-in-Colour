@@ -13,7 +13,7 @@ export function getDay(unixTimestamp, mode) {
 }
 
 export function getHTML(weather, day, time) {
-  return `<div class="weather-card">
+  return `<div class="weather-card ${day}">
               <div class="main-info ${day}">
                 <h3>${time}</h3>
                 <p>Temperature ${weather.main.temp} &#x2103;</p>
