@@ -1,4 +1,4 @@
-import { getDay, getHTML, calculateSunEvent } from "./utils.js";
+import { getDay, getHTML, getSunlightHTML, calculateSunEvent } from "./utils.js";
 
 let locationCoords;
 const weatherContainer = document.getElementById("weather-container");
@@ -47,9 +47,10 @@ function convertWeatherData(weatherData) {
   let weather;
 
   for (let i = 0; i < weatherData.length; i++) {
+    //console.log(i); // runs 40 times
     weather = weatherData[i];
-    const day = getDay(weatherData[i].dt * 1000, "weekday");
-    const time = getDay(weatherData[i].dt * 1000, "time");
+    const day = getDay(weatherData[i].dt, "weekday");
+    const time = getDay(weatherData[i].dt, "time");
 
     const html = getHTML(weather, day, time);
     weatherContainer.insertAdjacentHTML("beforeend", html);
@@ -60,27 +61,24 @@ function convertWeatherData(weatherData) {
 
 function calculateDaylight(sunlightData) {
   let minutesOfSunToday;
-  let minutesOfSunYesterday = (
-    (sunlightData[0].sunset - sunlightData[0].sunrise) /
-    60
-  ).toFixed(2);
-  let yesterday = getDay(sunlightData[0].dt * 1000, "weekday");
+  let minutesOfSunYesterday = ((sunlightData[0].sunset - sunlightData[0].sunrise) /60).toFixed(2);
+  let yesterday = getDay(sunlightData[0].dt, "weekday");
 
   for (let i = 1; i < sunlightData.length - 2; i++) {
-    const today = getDay(sunlightData[i].dt * 1000, "weekday");
+    //console.log(i); // running 5 times
+    const today = getDay(sunlightData[i].dt, "weekday");
 
-    minutesOfSunToday = (
-      (sunlightData[i].sunset - sunlightData[i].sunrise) /
-      60
-    ).toFixed(2);
+    minutesOfSunToday = ((sunlightData[i].sunset - sunlightData[i].sunrise) / 60).toFixed(2);
     const difference = (minutesOfSunToday - minutesOfSunYesterday).toFixed(2);
+    const sunsetTime = calculateSunEvent(sunlightData[i].sunset);
+    const sunriseTime = calculateSunEvent(sunlightData[i].sunrise);
 
     updateDOM(
       today,
       difference,
       yesterday,
-      sunlightData[i].sunset,
-      sunlightData[i].sunrise
+      sunsetTime,
+      sunriseTime
     );
 
     minutesOfSunYesterday = minutesOfSunToday;
@@ -89,25 +87,10 @@ function calculateDaylight(sunlightData) {
 }
 
 function updateDOM(today, difference, yesterday, sunset, sunrise) {
-  let infoBanner = document.getElementsByClassName(
-    `additional-info ${today}`
-  )[0];
-  infoBanner.innerHTML = `Welcome to <b>${today}</b>, \n 
-  it's nice here, 
-  we have ${difference} minutes more sunlight than ${yesterday}`;
 
-  const sunsetTime = calculateSunEvent(sunset);
-  const sunriseTime = calculateSunEvent(sunrise);
-
-  const sunriseHtml = getSunlightHTML(sunriseTime, sunsetTime, today);
-  infoBanner.insertAdjacentHTML("afterend", sunriseHtml);
-}
-
-function getSunlightHTML(sunriseTime, sunsetTime, today) {
-  return `<div class="sunlightInformation"> 
-              <div class="sunrise ${today}">Sunrise: ${sunriseTime}</div>
-              <div class="sunset ${today}">Sunset: ${sunsetTime}</div>
-          </div>`;
+  let firstInDayCard = document.getElementsByClassName(`main-info ${today}`)[0];
+  const sunriseInfoHtml = getSunlightHTML(today, difference, yesterday, sunset, sunrise);
+  firstInDayCard.insertAdjacentHTML("beforebegin", sunriseInfoHtml) 
 }
 
 /*
