@@ -1,0 +1,131 @@
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 15px;
+  background-color: #f3f1ed;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+* {
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#title {
+  width: 90%;
+}
+
+#weather-container > div {
+  margin: 3rem;
+}
+
+.weather-card .additional-info {
+  border-radius: 10px;
+  width: 80%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+}
+
+.weather-card .main-info {
+  border-radius: 10px;
+  width: 50%;
+  max-width: 350px;
+  margin: 10px;
+  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Sunday {
+  background-color: #405955be;
+  color: #f3f1ed;
+}
+
+.Monday {
+  background-color: #518a7b;
+}
+
+.Tuesday {
+  background-color: #c3d7d2;
+}
+
+.Wednesday {
+  background-color: #d59066;
+}
+
+.Thursday {
+  background-color: #f2d1c2;
+}
+
+.Friday {
+  background-color: #d1bfad;
+}
+
+.Saturday {
+  background-color: #fcfcfc;
+}
+
+.sunlightInformation {
+  width: 80%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sunlightInformation .sunrise,
+.sunlightInformation .sunset {
+  background-color: rgba(252, 252, 252, 0.452);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0;
+  border-radius: 10px;
+  width: 49%;
+}
+
+.sunlightInformation .Sunday {
+  background-color: #40595563;
+  color: #f3f1ed;
+}
+
+.sunlightInformation .Monday {
+  background-color: #518a7b80;
+}
+
+.sunlightInformation .Tuesday {
+  background-color: #c3d7d27c;
+}
+
+.sunlightInformation .Wednesday {
+  background-color: #d5916671;
+}
+
+.sunlightInformation .Thursday {
+  background-color: #f2d1c275;
+}
+
+.sunlightInformation .Friday {
+  background-color: #d1bfad73;
+}
+
+.sunlightInformation .Saturday {
+  background-color: rgba(252, 252, 252, 0.459);
+}
+/*# sourceMappingURL=styles.css.map */
