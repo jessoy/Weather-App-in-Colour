@@ -6,8 +6,8 @@ Portfolio piece demonstrating use of APIs and DOM manipulation, developed using 
 
 SCSS / CSS styling
 
-- format additional info
-- revise paddings
+- ~~format additional info~~
+- ~~revise paddings~~
 - develop flex layout
 - develop media queries and desktop mode
 
@@ -15,7 +15,7 @@ JS
 
 - second half of year - when sunlight is decreasing
 - Add user input at top, where would you like to search? or current location
-- icons of sunset / sunrise
+- ~~icons of sunset / sunrise~~
 - add animations
 
 COLOUR
