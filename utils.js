@@ -17,9 +17,9 @@ export function getHTML(weather, day, time) {
               <div class="additional-info ${day}"></div>
               <div class="main-info ${day}">
                 <h3>${time}</h3>
-                <p>Temperature ${weather.main.temp}</p>
-                <p>Feels Like: ${weather.main.feels_like}</p>
-                <p>Humidity: ${weather.main.humidity}</p>
+                <p>Temperature ${weather.main.temp} &#x2103;</p>
+                <p>Feels Like: ${weather.main.feels_like} &#x2103;</p>
+                <p>Humidity: ${weather.main.humidity} %</p>
                 <h4>Description: ${weather.weather[0].description}</h4>
                 <p>
                   looks like: <br /><img
@@ -41,7 +41,7 @@ function padNumber(number) {
 
 export function calculateSunEvent(sunEvent) {
   let sunEventDate = new Date(sunEvent * 1000);
-  return `${sunEventDate.getHours()}:${sunEventDate.getMinutes()}:${padNumber(
+  return `${padNumber(sunEventDate.getHours())}:${padNumber(sunEventDate.getMinutes())}:${padNumber(
     sunEventDate.getSeconds()
   )}`;
 }

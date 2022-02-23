@@ -1,7 +1,6 @@
 import { getDay, getHTML, calculateSunEvent } from "./utils.js";
 
 let locationCoords;
-// let userLocation;
 const weatherContainer = document.getElementById("weather-container");
 const title = document.getElementById("title");
 
@@ -56,7 +55,6 @@ function convertWeatherData(weatherData) {
     weatherContainer.insertAdjacentHTML("beforeend", html);
 
     // i = i + 1;
-    // updateDOM()
   }
 }
 
@@ -76,7 +74,6 @@ function calculateDaylight(sunlightData) {
       60
     ).toFixed(2);
     const difference = (minutesOfSunToday - minutesOfSunYesterday).toFixed(2);
-    // console.log(`${today} has ${difference} minutes more sunlight than day ${yesterday}`);
 
     updateDOM(
       today,
@@ -99,17 +96,17 @@ function updateDOM(today, difference, yesterday, sunset, sunrise) {
   it's nice here, 
   we have ${difference} minutes more sunlight than ${yesterday}`;
 
-  let sunsetDate = calculateSunEvent(sunset);
-  let sunriseDate = calculateSunEvent(sunrise);
+  const sunsetTime = calculateSunEvent(sunset);
+  const sunriseTime = calculateSunEvent(sunrise);
 
-  const sunriseHtml = getSunlightHTML(sunriseDate, sunsetDate, today);
+  const sunriseHtml = getSunlightHTML(sunriseTime, sunsetTime, today);
   infoBanner.insertAdjacentHTML("afterend", sunriseHtml);
 }
 
-function getSunlightHTML(sunriseDate, sunsetDate, today) {
+function getSunlightHTML(sunriseTime, sunsetTime, today) {
   return `<div class="sunlightInformation"> 
-              <div class="sunrise ${today}">Sunrise: ${sunriseDate}</div>
-              <div class="sunset ${today}">Sunset: ${sunsetDate}</div>
+              <div class="sunrise ${today}">Sunrise: ${sunriseTime}</div>
+              <div class="sunset ${today}">Sunset: ${sunsetTime}</div>
           </div>`;
 }
 
