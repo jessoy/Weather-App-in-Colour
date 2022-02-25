@@ -14,11 +14,12 @@ SCSS / CSS styling
 JS
 
 - second half of year - when sunlight is decreasing
-- Add user input at top, where would you like to search? or current location
+- ~~Add user input at top, where would you like to search? or current location~~
 - ~~icons of sunset / sunrise~~
 - add animations
 - ~~reformat first box of day - for media queries~~
-- resolve additional-info issue - new cities being added - not replaced
+- ~~resolve additional-info issue - new cities being added - not replaced~~
+- ~~ES6 syntax updates~~
 
 COLOUR
 
