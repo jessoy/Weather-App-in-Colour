@@ -47,6 +47,22 @@ export function getSunlightHTML(today, difference, yesterday, sunset, sunrise) {
           </div>`;
 }
 
+export function getSunlightHTMLLessLight(today, difference, yesterday, sunset, sunrise) {
+  return `<div class="additional-info">
+          <div class="text-container ${today}">
+            <p>Welcome to <span>${today}</span>, \n it's not so great here, we have ${difference} minutes less sunlight than ${yesterday}</p>
+          </div>  
+            <div class="sunlightInformation"> 
+              <div class="sunrise ${today}">
+              
+                <img src="assets/sunrise.png" alt=""/><br>Sunrise: ${sunrise}
+              </div>
+              <div class="sunset ${today}">
+              <img src="assets/sunset.png" alt=""/><br>Sunset: ${sunset}</div>
+            </div>
+          </div>`;
+}
+
 function padNumber(number) {
   if (number < 10) {
     return "0" + number;

@@ -1,6 +1,7 @@
 import {
   getDay,
   getSunlightHTML,
+  getSunlightHTMLLessLight,
   calculateSunEvent,
   getAndWriteWeatherHTML,
 } from "./utils.js";
@@ -107,12 +108,9 @@ function updateDOM(today, difference, yesterday, sunset, sunrise) {
   let firstInDayCard = document.getElementsByClassName(
     `weather-card ${today}`
   )[0];
-  const sunriseInfoHtml = getSunlightHTML(
-    today,
-    difference,
-    yesterday,
-    sunset,
-    sunrise
-  );
+  const sunriseInfoHtml =
+    difference > 0
+      ? getSunlightHTML(today, difference, yesterday, sunset, sunrise)
+      : getSunlightHTMLLessLight(today, difference, yesterday, sunset, sunrise);
   firstInDayCard.insertAdjacentHTML("beforebegin", sunriseInfoHtml);
 }

@@ -13,7 +13,7 @@ SCSS / CSS styling
 
 JS
 
-- second half of year - when sunlight is decreasing
+- ~~second half of year - when sunlight is decreasing~~
 - ~~Add user input at top, where would you like to search? or current location~~
 - ~~icons of sunset / sunrise~~
 - add animations
