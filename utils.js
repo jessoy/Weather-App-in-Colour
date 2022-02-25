@@ -1,4 +1,5 @@
 import { days } from "./config.js";
+import { weatherContainer } from "./main.js";
 
 export function getDay(unixTimestamp, mode) {
   if (mode === "weekday") {
@@ -60,3 +61,15 @@ export function calculateSunEvent(sunEvent) {
     sunEventDate.getSeconds()
   )}`;
 }
+
+export function getAndWriteWeatherHTML(weatherData) {
+  for (let i = 0; i < weatherData.length; i++) {
+    //console.log(i); // runs 40 times
+    const weather = weatherData[i];
+    const day = getDay(weatherData[i].dt, "weekday");
+    const time = getDay(weatherData[i].dt, "time");
+
+    const html = getHTML(weather, day, time);
+    weatherContainer.insertAdjacentHTML("beforeend", html);
+  }
+} 

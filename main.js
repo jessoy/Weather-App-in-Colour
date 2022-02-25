@@ -3,15 +3,20 @@ import {
   getHTML,
   getSunlightHTML,
   calculateSunEvent,
+  getAndWriteWeatherHTML,
 } from "./utils.js";
 
-let locationCoords;
-const weatherContainer = document.getElementById("weather-container");
+// let locationCoords;
+export const weatherContainer = document.getElementById("weather-container");
 const title = document.getElementById("title");
 const searchButton = document.getElementById("searchButton");
+let userInputCity;
+
+navigator.geolocation.getCurrentPosition(success, error);
 
 searchButton.addEventListener("click", function getUserInputCity() {
-  getCoords(document.getElementById("inputValue").value.toLowerCase());
+  userInputCity = document.getElementById("inputValue").value.toLowerCase();
+  getCoords(userInputCity);
 });
 
 async function getCoords(userInputCity) {
@@ -20,19 +25,16 @@ async function getCoords(userInputCity) {
   try {
     let locationInfo = await axios.get(url3);
 
-    getWeather(locationInfo.data.coord.lat, locationInfo.data.coord.lon);
+    const { lat: latitude, lon: longitude } = locationInfo.data.coord;
+
+    getWeather(latitude, longitude);
   } catch (error) {
     console.log("please enter a city" + error);
   }
 }
 
-navigator.geolocation.getCurrentPosition(success, error);
-
 function success(result) {
-  locationCoords = result.coords;
-
-  const latitude = locationCoords.latitude;
-  const longitude = locationCoords.longitude;
+  const { latitude, longitude } = result.coords;
 
   getWeather(latitude, longitude);
 }
@@ -69,18 +71,13 @@ function setTitleText(text) {
 }
 
 function convertWeatherData(weatherData) {
-  let weather;
-
-  for (let i = 0; i < weatherData.length; i++) {
-    //console.log(i); // runs 40 times
-    weather = weatherData[i];
-    const day = getDay(weatherData[i].dt, "weekday");
-    const time = getDay(weatherData[i].dt, "time");
-
-    const html = getHTML(weather, day, time);
-    weatherContainer.insertAdjacentHTML("beforeend", html);
-
-    // i = i + 1;
+  if (weatherContainer.innerHTML === "") {
+    console.log("no data yet");
+    getAndWriteWeatherHTML(weatherData);
+  } else {
+    console.log("writing new data");
+    weatherContainer.innerHTML = "";
+    getAndWriteWeatherHTML(weatherData);
   }
 }
 

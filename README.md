@@ -17,7 +17,7 @@ JS
 - Add user input at top, where would you like to search? or current location
 - ~~icons of sunset / sunrise~~
 - add animations
-- reformat first box of day - for media queries
+- ~~reformat first box of day - for media queries~~
 - resolve additional-info issue - new cities being added - not replaced
 
 COLOUR
