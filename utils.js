@@ -3,11 +3,11 @@ import { weatherContainer } from "./main.js";
 
 export function getDay(unixTimestamp, mode) {
   if (mode === "weekday") {
-    const date = new Date(unixTimestamp*1000);
+    const date = new Date(unixTimestamp * 1000);
     const day = `${days[date.getDay()]}`;
     return day;
   } else {
-    const date = new Date(unixTimestamp*1000);
+    const date = new Date(unixTimestamp * 1000);
     const day = `${days[date.getDay()]} ${date.getHours()}:00`;
     return day;
   }
@@ -57,9 +57,9 @@ function padNumber(number) {
 
 export function calculateSunEvent(sunEvent) {
   let sunEventDate = new Date(sunEvent * 1000);
-  return `${padNumber(sunEventDate.getHours())}:${padNumber(sunEventDate.getMinutes())}:${padNumber(
-    sunEventDate.getSeconds()
-  )}`;
+  return `${padNumber(sunEventDate.getHours())}:${padNumber(
+    sunEventDate.getMinutes()
+  )}:${padNumber(sunEventDate.getSeconds())}`;
 }
 
 export function getAndWriteWeatherHTML(weatherData) {
@@ -72,4 +72,4 @@ export function getAndWriteWeatherHTML(weatherData) {
     const html = getHTML(weather, day, time);
     weatherContainer.insertAdjacentHTML("beforeend", html);
   }
-} 
+}
