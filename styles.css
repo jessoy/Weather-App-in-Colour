@@ -1,7 +1,7 @@
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-size: 15px;
+  font-size: 10px;
   background-color: #f3f1ed;
 }
 
@@ -36,7 +36,8 @@ html {
 }
 
 #weather-container > div {
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #weather-container {
@@ -47,7 +48,7 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  max-width: 100%;
+  max-width: 90%;
 }
 
 @media screen and (min-width: 750px) {
@@ -58,6 +59,13 @@ html {
             flex-direction: row;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    width: 65rem;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  #weather-container {
+    width: 105rem;
   }
 }
 
@@ -93,7 +101,7 @@ html {
 .weather-card .main-info {
   border-radius: 10px;
   width: 50%;
-  max-width: 350px;
+  min-width: 28rem;
   margin: 10px;
   margin-right: 10px;
   margin-left: auto;
@@ -101,11 +109,13 @@ html {
   padding-top: 10px;
   -webkit-filter: brightness(1.05);
           filter: brightness(1.05);
+  -webkit-box-shadow: 5px 5px 10px 5px #47474928;
+          box-shadow: 5px 5px 10px 5px #47474928;
 }
 
 @media screen and (min-width: 750px) {
   .weather-card .main-info {
-    min-width: 320px;
+    min-width: 28rem;
   }
 }
 
@@ -117,10 +127,10 @@ html {
 
 .additional-info {
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 35px;
+  margin-right: 35px;
   font-size: 1.5rem;
   background-color: none;
 }
@@ -133,6 +143,8 @@ html {
   -webkit-filter: brightness(0.95);
           filter: brightness(0.95);
   padding: 10px;
+  -webkit-box-shadow: 5px 5px 10px 5px #47474928;
+          box-shadow: 5px 5px 10px 5px #47474928;
 }
 
 .additional-info .sunlightInformation {
@@ -150,6 +162,8 @@ html {
 .additional-info .sunlightInformation .sunrise,
 .additional-info .sunlightInformation .sunset {
   background-color: rgba(252, 252, 252, 0.452);
+  -webkit-box-shadow: 5px 5px 10px 5px #47474928;
+          box-shadow: 5px 5px 10px 5px #47474928;
   padding: 10px;
   margin: 0;
   border-radius: 10px;
@@ -196,5 +210,10 @@ h3 {
 
 h4 {
   font-size: 1.3rem;
+}
+
+span {
+  font-weight: bold;
+  font-size: larger;
 }
 /*# sourceMappingURL=styles.css.map */

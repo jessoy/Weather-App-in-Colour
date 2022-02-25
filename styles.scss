@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 10px;
   background-color: #f3f1ed;
 }
 
@@ -71,40 +71,43 @@ html {
 }
 
 #weather-container > div {
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #weather-container {
   display: flex;
   flex-direction: column;
-  // flex-direction: row;
-  max-width: 100%;
+  max-width: 90%;
 
   @media screen and (min-width: 750px) {
     flex-direction: row;
     flex-wrap: wrap;
+    width: 65rem;
+  }
+
+  @media screen and (min-width: 1150px) {
+    width: 105rem;
   }
 }
 
 .weather-card {
   @include dayColours();
-  // display: flex;
-  // flex-direction: column;
-  // flex-direction: row;
 
   .main-info {
     border-radius: 10px;
     width: 50%;
-    max-width: 350px;
+    min-width: 28rem;
     margin: 10px;
     margin-right: 10px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 10px;
     filter: brightness(1.05);
+    box-shadow: 5px 5px 10px 5px #47474928;
 
     @media screen and (min-width: 750px) {
-      min-width: 320px;
+      min-width: 28rem;
     }
   }
 
@@ -116,10 +119,10 @@ html {
 
 .additional-info {
   border-radius: 10px;
-  width: 80%;
+  width: 100%;
   margin: 10px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 35px;
+  margin-right: 35px;
   font-size: 1.5rem;
   background-color: none;
 
@@ -130,6 +133,7 @@ html {
     border-radius: 10px;
     filter: brightness(0.95);
     padding: 10px;
+    box-shadow: 5px 5px 10px 5px #47474928;
   }
 
   .sunlightInformation {
@@ -142,7 +146,7 @@ html {
     .sunrise,
     .sunset {
       background-color: rgba(252, 252, 252, 0.452);
-
+      box-shadow: 5px 5px 10px 5px #47474928;
       padding: 10px;
       margin: 0;
       border-radius: 10px;
@@ -163,4 +167,9 @@ h3 {
 
 h4 {
   font-size: 1.3rem;
+}
+
+span {
+  font-weight: bold;
+  font-size: larger;
 }

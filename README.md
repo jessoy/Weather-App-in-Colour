@@ -8,8 +8,8 @@ SCSS / CSS styling
 
 - ~~format additional info~~
 - ~~revise paddings~~
-- develop flex layout
-- develop media queries and desktop mode
+- ~~develop flex layout~~
+- ~~develop media queries and desktop mode~~
 
 JS
 
