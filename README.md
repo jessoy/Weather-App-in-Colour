@@ -24,3 +24,10 @@ JS
 COLOUR
 
 - develop calculation on colour dependant on day of week and brightness of day?
+
+ERROR MESSAGES
+
+- ~~try / catch to API~~
+- ~~internet down~~
+- ~~invalid location search~~ 
+- ~~geolocator not allowing access~~

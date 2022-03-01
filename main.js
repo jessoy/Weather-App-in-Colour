@@ -9,6 +9,8 @@ import {
 export const weatherContainer = document.getElementById("weather-container");
 const title = document.getElementById("title");
 const searchButton = document.getElementById("searchButton");
+const searchLocation = document.getElementById("searchLocation");
+const weatherContainerHTML = document.getElementById("weather-container");
 
 navigator.geolocation.getCurrentPosition(success, error);
 
@@ -29,6 +31,8 @@ async function getCoords(userInputCity) {
     getWeather(lat, lon);
   } catch (error) {
     console.log("please enter a city" + error);
+
+    showErrorMessage(error);
   }
 }
 
@@ -40,6 +44,19 @@ function success(result) {
 
 function error(error) {
   console.log(error);
+  showErrorMessage(error);
+}
+
+function showErrorMessage(error) {
+  weatherContainerHTML.style.display = "none";
+  searchLocation.style.display = "none";
+  title.innerHTML = error.message;
+
+  try {
+    let errorCode = error.response.status;
+    let img = `<img src="https://http.cat/${errorCode}" alt="image showing cat and error code ${errorCode}">`;
+    title.insertAdjacentHTML("afterend", img);
+  } catch (error) {}
 }
 
 async function getWeather(latitude, longitude) {
@@ -65,6 +82,12 @@ async function getWeather(latitude, longitude) {
     calculateDaylight(sunlightData.sunrise);
   } catch (error) {
     console.log("an error occured: " + error);
+
+    if (error.toString().includes("Network")) {
+      error.message = "Network Error";
+    }
+
+    showErrorMessage(error);
   }
 }
 
