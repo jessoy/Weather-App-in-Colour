@@ -89,3 +89,8 @@ export function getAndWriteWeatherHTML(weatherData) {
     weatherContainer.insertAdjacentHTML("beforeend", html);
   }
 }
+
+export function validateInput(input) {
+  const regex = /^[a-z ]{3,}$/gi;
+  return regex.test(input);
+}

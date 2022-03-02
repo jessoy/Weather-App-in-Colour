@@ -4,6 +4,7 @@ import {
   getSunlightHTMLLessLight,
   calculateSunEvent,
   getAndWriteWeatherHTML,
+  validateInput,
 } from "./utils.js";
 
 export const weatherContainer = document.getElementById("weather-container");
@@ -15,40 +16,32 @@ const weatherContainerHTML = document.getElementById("weather-container");
 navigator.geolocation.getCurrentPosition(success, error);
 
 searchButton.addEventListener("click", function () {
-  getCoords(document.getElementById("inputValue").value.toLowerCase());
+  getCoords(document.getElementById("inputValue").value);
 });
 
-function validateInput(input) {
-  const regex = /^[a-z ]{3,}$/g;
-
-  return regex.test(input);
-}
-
 async function getCoords(userInputCity) {
-  if (validateInput(userInputCity)) {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${userInputCity}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
+  if (!validateInput(userInputCity)) {
+    error.message = "Failed Validation, please enter a valid location";
+    showErrorMessage(error);
+    return;
+  }
 
-    try {
-      let {
-        data: {
-          coord: { lat, lon },
-        },
-      } = await axios.get(url);
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${userInputCity}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
 
-      // lat = undefined;
+  try {
+    let {
+      data: {
+        coord: { lat, lon },
+      },
+    } = await axios.get(url);
 
-      if (lat === undefined || lon === undefined) {
-        // error.message = "Data undefined";
-        throw new Error("Data undefined");
-        // showErrorMessage(error);
-      } else {
-        getWeather(lat, lon);
-      }
-    } catch (error) {
-      showErrorMessage(error);
-    }
-  } else {
-    error.message = "Failed Validation";
+    // lat = undefined;
+
+    if (lat === undefined || lon === undefined)
+      throw new Error("Data undefined");
+
+    getWeather(lat, lon);
+  } catch (error) {
     showErrorMessage(error);
   }
 }
@@ -77,10 +70,8 @@ function showErrorMessage(error) {
 }
 
 async function getWeather(latitude, longitude) {
-  const url1 = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric
-  `;
-  const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,current&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric
-  `;
+  const url1 = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
+  const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,current&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
 
   try {
     let {
@@ -92,19 +83,16 @@ async function getWeather(latitude, longitude) {
 
     // daily = undefined;
 
-    if (city === undefined || list === undefined || daily === undefined) {
-      // error.message = "Data undefined";
+    if (city === undefined || list === undefined || daily === undefined)
       throw new Error("Data undefined");
-      // showErrorMessage(error);
-    } else {
-      setTitleText(city.name);
 
-      let weatherData = { item: list };
-      convertWeatherData(weatherData.item);
+    setTitleText(city.name);
 
-      let sunlightData = { sunrise: daily };
-      calculateDaylight(sunlightData.sunrise);
-    }
+    let weatherData = { item: list };
+    convertWeatherData(weatherData.item);
+
+    let sunlightData = { sunrise: daily };
+    calculateDaylight(sunlightData.sunrise);
   } catch (error) {
     console.log("an error occured: " + error);
 
@@ -130,15 +118,16 @@ function convertWeatherData(weatherData) {
 }
 
 function calculateDaylight(sunlightData) {
+  console.log(sunlightData);
   let i = 0;
-  const { dt, sunset, sunrise } = sunlightData[i];
-  let yesterday = getDay(dt, "weekday");
+  const { dt: timestamp, sunset, sunrise } = sunlightData[i];
+  let yesterday = getDay(timestamp, "weekday");
   let minutesOfSunYesterday = (sunset - sunrise) / 60;
 
   for (let i = 1; i < sunlightData.length - 2; i++) {
-    const { dt, sunset, sunrise } = sunlightData[i];
+    const { dt: timestamp, sunset, sunrise } = sunlightData[i];
     //console.log(i); // running 5 times
-    const today = getDay(dt, "weekday");
+    const today = getDay(timestamp, "weekday");
 
     const minutesOfSunToday = (sunset - sunrise) / 60;
     const difference = (minutesOfSunToday - minutesOfSunYesterday).toFixed(2);
