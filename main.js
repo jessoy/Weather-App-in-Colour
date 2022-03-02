@@ -18,29 +18,37 @@ searchButton.addEventListener("click", function () {
   getCoords(document.getElementById("inputValue").value.toLowerCase());
 });
 
+function validateInput(input) {
+  const regex = /^[a-z]{3,}$/g;
+
+  return regex.test(input);
+}
+
 async function getCoords(userInputCity) {
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${userInputCity}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
+  if (validateInput(userInputCity)) {
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${userInputCity}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
 
-  try {
-    let {
-      data: {
-        coord: { lat, lon },
-      },
-    } = await axios.get(url);
+    try {
+      let {
+        data: {
+          coord: { lat, lon },
+        },
+      } = await axios.get(url);
 
-    // lat = undefined;
+      // lat = undefined;
 
-    if (lat === undefined || lon === undefined) {
-      // error.message = "Data undefined";
-      throw new Error ("Data undefined")
-      // showErrorMessage(error);
-    } else {
-      getWeather(lat, lon);
+      if (lat === undefined || lon === undefined) {
+        // error.message = "Data undefined";
+        throw new Error("Data undefined");
+        // showErrorMessage(error);
+      } else {
+        getWeather(lat, lon);
+      }
+    } catch (error) {
+      showErrorMessage(error);
     }
-
-  } catch (error) {
-    // console.log("please enter a city" + error);
-
+  } else {
+    error.message = "Failed Validation";
     showErrorMessage(error);
   }
 }
@@ -86,18 +94,17 @@ async function getWeather(latitude, longitude) {
 
     if (city === undefined || list === undefined || daily === undefined) {
       // error.message = "Data undefined";
-      throw new Error ("Data undefined")
+      throw new Error("Data undefined");
       // showErrorMessage(error);
     } else {
       setTitleText(city.name);
 
       let weatherData = { item: list };
       convertWeatherData(weatherData.item);
-  
+
       let sunlightData = { sunrise: daily };
       calculateDaylight(sunlightData.sunrise);
     }
-
   } catch (error) {
     console.log("an error occured: " + error);
 
