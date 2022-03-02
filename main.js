@@ -28,9 +28,18 @@ async function getCoords(userInputCity) {
       },
     } = await axios.get(url);
 
-    getWeather(lat, lon);
+    // lat = undefined;
+
+    if (lat === undefined || lon === undefined) {
+      // error.message = "Data undefined";
+      throw new Error ("Data undefined")
+      // showErrorMessage(error);
+    } else {
+      getWeather(lat, lon);
+    }
+
   } catch (error) {
-    console.log("please enter a city" + error);
+    // console.log("please enter a city" + error);
 
     showErrorMessage(error);
   }
@@ -43,7 +52,7 @@ function success(result) {
 }
 
 function error(error) {
-  console.log(error);
+  // console.log(error);
   showErrorMessage(error);
 }
 
@@ -73,13 +82,22 @@ async function getWeather(latitude, longitude) {
       data: { daily },
     } = await axios.get(url2);
 
-    setTitleText(city.name);
+    // daily = undefined;
 
-    let weatherData = { item: list };
-    convertWeatherData(weatherData.item);
+    if (city === undefined || list === undefined || daily === undefined) {
+      // error.message = "Data undefined";
+      throw new Error ("Data undefined")
+      // showErrorMessage(error);
+    } else {
+      setTitleText(city.name);
 
-    let sunlightData = { sunrise: daily };
-    calculateDaylight(sunlightData.sunrise);
+      let weatherData = { item: list };
+      convertWeatherData(weatherData.item);
+  
+      let sunlightData = { sunrise: daily };
+      calculateDaylight(sunlightData.sunrise);
+    }
+
   } catch (error) {
     console.log("an error occured: " + error);
 
