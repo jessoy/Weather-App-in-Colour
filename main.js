@@ -19,7 +19,7 @@ searchButton.addEventListener("click", function () {
 });
 
 function validateInput(input) {
-  const regex = /^[a-z]{3,}$/g;
+  const regex = /^[a-z ]{3,}$/g;
 
   return regex.test(input);
 }
