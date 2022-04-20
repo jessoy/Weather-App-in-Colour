@@ -1,6 +1,7 @@
 import { days } from "./config.js";
 import { weatherContainer } from "./main.js";
 
+// gets the day from a timestamp
 export function getDay(unixTimestamp, mode) {
   if (mode === "weekday") {
     const date = new Date(unixTimestamp * 1000);
@@ -13,6 +14,7 @@ export function getDay(unixTimestamp, mode) {
   }
 }
 
+// prints html for main weather card
 export function getHTML(weather, day, time) {
   return `<div class="weather-card ${day}">
               <div class="main-info ${day}">
@@ -31,6 +33,7 @@ export function getHTML(weather, day, time) {
           </div>`;
 }
 
+// prints html for daily sun update if positive
 export function getSunlightHTML(today, difference, yesterday, sunset, sunrise) {
   return `<div class="additional-info">
           <div class="text-container ${today}">
@@ -48,6 +51,7 @@ export function getSunlightHTML(today, difference, yesterday, sunset, sunrise) {
           </div>`;
 }
 
+// prints html for main weather card if negative
 export function getSunlightHTMLLessLight(today, difference, yesterday, sunset, sunrise) {
   return `<div class="additional-info">
           <div class="text-container ${today}">
@@ -65,10 +69,12 @@ export function getSunlightHTMLLessLight(today, difference, yesterday, sunset, s
           </div>`;
 }
 
+// increases decimal point to two places
 function padNumber(number) {
   return (number < 10 ? "0" + number : number);
 }
 
+// returns time of sun event in hour: minute: second format
 export function calculateSunEvent(sunEvent) {
   let sunEventDate = new Date(sunEvent * 1000);
   return `${padNumber(sunEventDate.getHours())}:${padNumber(
@@ -76,6 +82,7 @@ export function calculateSunEvent(sunEvent) {
   )}:${padNumber(sunEventDate.getSeconds())}`;
 }
 
+// write card information
 export function getAndWriteWeatherHTML(weatherData) {
   for (let i = 0; i < weatherData.length; i++) {
     //console.log(i); // runs 40 times
@@ -88,6 +95,7 @@ export function getAndWriteWeatherHTML(weatherData) {
   }
 }
 
+// regex validation
 export function validateInput(input) {
   const regex = /^[a-z ]{3,}$/gi;
   return regex.test(input);
