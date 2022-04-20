@@ -34,7 +34,8 @@ export function getHTML(weather, day, time) {
 export function getSunlightHTML(today, difference, yesterday, sunset, sunrise) {
   return `<div class="additional-info">
           <div class="text-container ${today}">
-            <p>Welcome to <span>${today}</span>, \n it's nice here, we have ${difference} minutes more sunlight than ${yesterday}</p>
+            <p>Welcome to <span>${today}</span>, 
+            \n it's nice here, we have ${difference} minutes more sunlight than ${yesterday}</p>
           </div>  
             <div class="sunlightInformation"> 
               <div class="sunrise ${today}">
@@ -50,7 +51,8 @@ export function getSunlightHTML(today, difference, yesterday, sunset, sunrise) {
 export function getSunlightHTMLLessLight(today, difference, yesterday, sunset, sunrise) {
   return `<div class="additional-info">
           <div class="text-container ${today}">
-            <p>Welcome to <span>${today}</span>, \n it's not so great here, we have ${difference} minutes less sunlight than ${yesterday}</p>
+            <p>Welcome to <span>${today}</span>, 
+            \n it's not so great here, we have ${difference} minutes less sunlight than ${yesterday}</p>
           </div>  
             <div class="sunlightInformation"> 
               <div class="sunrise ${today}">
@@ -64,11 +66,7 @@ export function getSunlightHTMLLessLight(today, difference, yesterday, sunset, s
 }
 
 function padNumber(number) {
-  if (number < 10) {
-    return "0" + number;
-  } else {
-    return number;
-  }
+  return (number < 10 ? "0" + number : number);
 }
 
 export function calculateSunEvent(sunEvent) {

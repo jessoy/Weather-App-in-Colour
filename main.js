@@ -6,6 +6,9 @@ import {
   getAndWriteWeatherHTML,
   validateInput,
 } from "./utils.js";
+import { apiSearchableLocationUrl } from "./config.js";
+import { apiCityUrl, apiDailyUrl } from "./config.js";
+
 
 export const weatherContainer = document.getElementById("weather-container");
 const title = document.getElementById("title");
@@ -26,14 +29,12 @@ async function getCoords(userInputCity) {
     return;
   }
 
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${userInputCity}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
-
   try {
     let {
       data: {
         coord: { lat, lon },
       },
-    } = await axios.get(url);
+    } = await axios.get(apiSearchableLocationUrl(userInputCity));
 
     // lat = undefined;
 
@@ -70,18 +71,14 @@ function showErrorMessage(error) {
 }
 
 async function getWeather(latitude, longitude) {
-  const url1 = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
-  const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly,current&appid=3d7c4f7a94f03f1bc72f4928c291ae0d&units=metric`;
 
   try {
     let {
       data: { city, list },
-    } = await axios.get(url1);
+    } = await axios.get(apiCityUrl(latitude, longitude));
     let {
       data: { daily },
-    } = await axios.get(url2);
-
-    // daily = undefined;
+    } = await axios.get(apiDailyUrl(latitude, longitude));
 
     if (city === undefined || list === undefined || daily === undefined)
       throw new Error("Data undefined");
@@ -94,7 +91,7 @@ async function getWeather(latitude, longitude) {
     let sunlightData = { sunrise: daily };
     calculateDaylight(sunlightData.sunrise);
   } catch (error) {
-    console.log("an error occured: " + error);
+    // console.log("an error occured: " + error);
 
     if (error.toString().includes("Network")) {
       error.message = "Network Error";
@@ -118,7 +115,7 @@ function convertWeatherData(weatherData) {
 }
 
 function calculateDaylight(sunlightData) {
-  console.log(sunlightData);
+  // console.log(sunlightData);
   let i = 0;
   const { dt: timestamp, sunset, sunrise } = sunlightData[i];
   let yesterday = getDay(timestamp, "weekday");
